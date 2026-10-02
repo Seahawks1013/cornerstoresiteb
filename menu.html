@@ -521,6 +521,54 @@
     .foot p.blurb{margin-left:auto;margin-right:auto;}
     .foot-bottom{justify-content:center;text-align:center;}
   }
+
+  /* ============ MOBILE HEADER: compact + order button ============ */
+  .nav-order{display:none;}
+  @media (max-width:860px){
+    .nav{padding-top:7px;padding-bottom:7px;}
+    .logo{height:36px;}
+    .nav-right{gap:10px;}
+    .nav-right .nav-phone{display:none;}
+    .nav-order{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;
+      background:var(--orange);color:#fff;font-family:'Montserrat',sans-serif;font-size:.64rem;
+      font-weight:500;letter-spacing:.16em;text-transform:uppercase;-webkit-tap-highlight-color:transparent;}
+    .navlinks{inset:52px 0 auto;}
+  }
+
+  /* ============ COMPACT FOOTER LINK ROWS ============ */
+  .foot{grid-template-columns:1.5fr 1fr;padding-bottom:34px;}
+  .foot-links{display:flex;justify-content:space-between;align-items:center;gap:14px 30px;
+    flex-wrap:wrap;padding:18px 0 6px;}
+  .foot-row{display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap;}
+  .foot-row a{display:inline;line-height:1.6;font-size:.86rem;}
+  .foot-tag{font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--brass-lite);margin-right:6px;}
+  @media (max-width:860px){
+    .foot-links{flex-direction:column;align-items:center;}
+    .foot-row{justify-content:center;}
+  }
+
+  /* ============ MENU EXTRAS ============ */
+  a.card{color:inherit;cursor:pointer;transition:border-color .3s,transform .3s;}
+  a.card:hover{border-color:var(--brass-lite);transform:translateY(-2px);}
+  .card-name small{font-size:.68em;font-weight:400;letter-spacing:.06em;color:var(--muted-d);}
+  .menu-note{font-family:'Montserrat',sans-serif;font-size:.76rem;line-height:1.9;color:var(--muted-d);
+    margin:-6px 0 22px;max-width:72ch;}
+
+  /* ============ MENU: sub-headings + cup-size filter ============ */
+  .cards-sub{grid-column:1/-1;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:600;
+    font-size:1.5rem;color:var(--brass-lite);margin:18px 0 2px;padding-bottom:10px;border-bottom:1px solid var(--rule-d);}
+  .cards-sub:first-child{margin-top:0;}
+  .drinkpanel[hidden],.size-set[hidden]{display:none;}
+  .sizes{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 14px;}
+  .sizes-label{font-family:'Montserrat',sans-serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-d);margin-right:4px;}
+  .size-btn{min-height:44px;min-width:64px;padding:10px 16px;cursor:pointer;background:transparent;
+    border:1px solid var(--rule-d);color:var(--paper);font-family:'Montserrat',sans-serif;font-size:.78rem;
+    letter-spacing:.08em;transition:background .3s,border-color .3s,color .3s;}
+  .size-btn:hover{border-color:var(--brass-lite);}
+  .size-btn[aria-pressed="true"]{background:var(--paper);border-color:var(--paper);color:var(--espresso);}
+  .size-note{margin:0 0 20px;}
+  @media (max-width:860px){ .sizes{justify-content:center;} .cards-sub{text-align:center;} }
 </style>
 </head>
 <body id="top">
@@ -530,13 +578,15 @@
     <nav class="navlinks" id="navlinks" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="menu.html" aria-current="page">Menu</a>
+      <a href="market.html">The Market</a>
       <a href="events.html">Event Space</a>
       <a href="index.html#visit">Contact Us</a>
     </nav>
     <div class="nav-right">
       <a class="nav-phone" href="tel:3602255000">360-225-5000</a>
-      <a class="nav-cta" href="tel:3602255000">Order Online</a>
-      <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks">Menu</button>
+      <a class="nav-cta" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road" target="_blank" rel="noopener">Order Online</a>
+      <a class="nav-order" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road" target="_blank" rel="noopener">Order Now</a>
+      <button class="navtoggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks" aria-label="Open navigation">&#9776;</button>
     </div>
   </div>
 </header>
@@ -559,192 +609,666 @@
     <div class="tabs" role="tablist" aria-label="Menu categories">
       <button class="tab" role="tab" id="tab-sandwiches" aria-controls="panel-sandwiches" aria-selected="true">Sandwiches</button>
       <button class="tab" role="tab" id="tab-pizza" aria-controls="panel-pizza" aria-selected="false">Pizza</button>
+      <button class="tab" role="tab" id="tab-wings" aria-controls="panel-wings" aria-selected="false">Wings &amp; Breadsticks</button>
       <button class="tab" role="tab" id="tab-salads" aria-controls="panel-salads" aria-selected="false">Salads</button>
-      <button class="tab" role="tab" id="tab-sides" aria-controls="panel-sides" aria-selected="false">Sides</button>
-      <button class="tab" role="tab" id="tab-sweets" aria-controls="panel-sweets" aria-selected="false">Sweets</button>
+      <button class="tab" role="tab" id="tab-drinks" aria-controls="panel-drinks" aria-selected="false">Coffee &amp; Drinks</button>
     </div>
 
+    <p class="menu-note">Tap any item to order it online &middot; Every sandwich comes with a bag of chips &middot; Bread: white, wheat, sourdough, hoagie, wrap, or gluten free</p>
+
     <div class="cards" role="tabpanel" id="panel-sandwiches" aria-labelledby="tab-sandwiches">
-      <article class="card">
-        <div>
-          <h3 class="card-name">Bigfoot</h3>
-          <p class="card-desc">Boar's Head ham, pepperoni, prosciutto, salami, capocollo, provolone, lettuce, red onion, tomato, Italian mayo</p>
-          <p class="card-price">$16.99</p>
-        </div>
-        <button class="card-add" aria-label="Add Bigfoot to your order">+</button>
-      </article>
-      <article class="card">
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-corner-club_13235b43-d095-4322-9551-39251e93b262" target="_blank" rel="noopener" aria-label="Order Corner Club online">
         <div>
           <h3 class="card-name">Corner Club</h3>
-          <p class="card-desc">Ovengold turkey and Black Forest ham, bacon, Switzerland Swiss, tomato, lettuce, house made spread</p>
+          <p class="card-desc">Ham, turkey, bacon, lettuce, Swiss, tomato, Italian mayo</p>
           <p class="card-price">$16.89</p>
         </div>
-        <button class="card-add" aria-label="Add Corner Club to your order">+</button>
-      </article>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-bigfoot_2a56e0a7-080d-450b-8b7f-ad4a6c781c95" target="_blank" rel="noopener" aria-label="Order Bigfoot online">
         <div>
-          <h3 class="card-name">Chicken Bacon Ranch</h3>
-          <p class="card-desc">Firesmith chicken, bacon, provolone, Vermont cheddar and ranch, pressed hot on Kalama sourdough</p>
-          <p class="card-price">$16.79</p>
+          <h3 class="card-name">Bigfoot</h3>
+          <p class="card-desc">Ham, pepperoni, salami, prosciutto, capocollo, provolone, lettuce, onion, tomato, Italian mayo</p>
+          <p class="card-price">$16.99</p>
         </div>
-        <button class="card-add" aria-label="Add Chicken Bacon Ranch to your order">+</button>
-      </article>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-byo_9d5506c3-3080-493b-8851-9596570de13d" target="_blank" rel="noopener" aria-label="Order BYO online">
         <div>
-          <h3 class="card-name">Build Your Own</h3>
-          <p class="card-desc">Two meats, two vegetables, your choice of sauce and cheese, on the bread you want</p>
+          <h3 class="card-name">BYO</h3>
+          <p class="card-desc">Build your own sandwich, your choice of bread, meat, cheese and veggies</p>
           <p class="card-price">$16.29</p>
         </div>
-        <button class="card-add" aria-label="Add Build Your Own to your order">+</button>
-      </article>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road" target="_blank" rel="noopener" aria-label="Order ½ BYO online">
         <div>
-          <h3 class="card-name">Caprese Wrap</h3>
-          <p class="card-desc">Fresh tomato, sliced mozzarella, basil and spring mix</p>
-          <p class="card-price">$13.99</p>
-        </div>
-        <button class="card-add" aria-label="Add Caprese Wrap to your order">+</button>
-      </article>
-      <article class="card">
-        <div>
-          <h3 class="card-name">Cascade</h3>
-          <p class="card-desc">Boar's Head ham, jalapeño pepper jelly, cream cheese and lettuce, toasted</p>
-          <p class="card-price">$13.99</p>
-        </div>
-        <button class="card-add" aria-label="Add Cascade to your order">+</button>
-      </article>
-      <article class="card">
-        <div>
-          <h3 class="card-name">BLT</h3>
-          <p class="card-desc">Fresh cut tomato, leafy lettuce, mayo and Boar's Head bacon on toasted bread</p>
-          <p class="card-price">$13.55</p>
-        </div>
-        <button class="card-add" aria-label="Add BLT to your order">+</button>
-      </article>
-      <article class="card">
-        <div>
-          <h3 class="card-name">Half Build Your Own</h3>
-          <p class="card-desc">Two meats, two vegetables, choice of sauce, one slice of Boar's Head cheese</p>
+          <h3 class="card-name">½ BYO</h3>
+          <p class="card-desc">A half-size build-your-own</p>
           <p class="card-price">$8.49</p>
         </div>
-        <button class="card-add" aria-label="Add Half Build Your Own to your order">+</button>
-      </article>
-    </div>
-    <div class="cards" role="tabpanel" id="panel-pizza" aria-labelledby="tab-pizza" hidden>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road" target="_blank" rel="noopener" aria-label="Order BLT online">
         <div>
-          <h3 class="card-name">Build Your Own Pizza</h3>
-          <p class="card-desc">Kalama sourdough crust, your sauce, cheese and toppings, fired to order</p>
-          <p class="card-price">$16.89</p>
+          <h3 class="card-name">BLT</h3>
+          <p class="card-desc">Bacon, lettuce, tomato</p>
+          <p class="card-price">$13.55</p>
         </div>
-        <button class="card-add" aria-label="Add Build Your Own Pizza to your order">+</button>
-      </article>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-caprese-wrap_bfd7d178-27a2-4820-97c7-fb713c304165" target="_blank" rel="noopener" aria-label="Order Caprese Wrap online">
         <div>
-          <h3 class="card-name">Pepperoni</h3>
-          <p class="card-desc">Red sauce, mozzarella and a generous hand with the pepperoni</p>
+          <h3 class="card-name">Caprese Wrap</h3>
+          <p class="card-desc">Layered mozzarella, tomato slices, spring mix, basil, balsamic glaze</p>
+          <p class="card-price">$13.99</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-cascade_ef7f72bf-7611-48d4-8f9e-e5cee4138c78" target="_blank" rel="noopener" aria-label="Order Cascade online">
+        <div>
+          <h3 class="card-name">Cascade <small>(Toasted)</small></h3>
+          <p class="card-desc">Ham, huckleberry pepper jelly, cream cheese, lettuce</p>
+          <p class="card-price">$13.99</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-chicken-bacon-ranch_3cabd105-b7d6-4ee4-a929-15cded60cb85" target="_blank" rel="noopener" aria-label="Order Chicken Bacon Ranch online">
+        <div>
+          <h3 class="card-name">Chicken Bacon Ranch</h3>
+          <p class="card-desc">Chicken, bacon, ranch, provolone, Vermont cheddar</p>
+          <p class="card-price">$16.79</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-eruption_07a66ccd-913d-42a3-a9f7-7f557a976958" target="_blank" rel="noopener" aria-label="Order Eruption online">
+        <div>
+          <h3 class="card-name">Eruption <small>(Toasted)</small></h3>
+          <p class="card-desc">Turkey, orange cranberry sauce, deli mustard, cream cheese, lettuce</p>
+          <p class="card-price">$13.84</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-gorge_67511744-9ee4-4146-81eb-5e4cd04d5eae" target="_blank" rel="noopener" aria-label="Order Gorge online">
+        <div>
+          <h3 class="card-name">Gorge</h3>
+          <p class="card-desc">Spring mix, red bell pepper, red onion, tomato, cucumber, avocado, feta, hummus, olive oil, salt, pepper</p>
           <p class="card-price">$15.99</p>
         </div>
-        <button class="card-add" aria-label="Add Pepperoni to your order">+</button>
-      </article>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-grist-mill_f25e5de8-91e5-47a4-a760-a2269572d782" target="_blank" rel="noopener" aria-label="Order Grist Mill online">
         <div>
-          <h3 class="card-name">Margherita</h3>
-          <p class="card-desc">Red sauce, fresh mozzarella, basil and olive oil</p>
-          <p class="card-price">$15.49</p>
+          <h3 class="card-name">Grist Mill</h3>
+          <p class="card-price">$16.99</p>
         </div>
-        <button class="card-add" aria-label="Add Margherita to your order">+</button>
-      </article>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-horseshoe_3d3ead59-9a73-46cf-8d60-5a5d1330475f" target="_blank" rel="noopener" aria-label="Order Horseshoe online">
         <div>
-          <h3 class="card-name">Gluten-Free Crust</h3>
-          <p class="card-desc">Any pizza on the board, built on a gluten-free base</p>
-          <p class="card-price">$3.00</p>
+          <h3 class="card-name">Horseshoe</h3>
+          <p class="card-price">$12.79</p>
         </div>
-        <button class="card-add" aria-label="Add Gluten-Free Crust to your order">+</button>
-      </article>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-lewis_4fd1d7cc-26cb-4050-bec6-07ccbc242bf4" target="_blank" rel="noopener" aria-label="Order Lewis online">
+        <div>
+          <h3 class="card-name">Lewis</h3>
+          <p class="card-desc">Roast beef, onion, balsamic aioli, mozzarella, horseradish mayonnaise</p>
+          <p class="card-price">$13.99</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-pbj_a9716d41-0a0b-4f60-b0d2-3bf5b35fe528" target="_blank" rel="noopener" aria-label="Order PB&amp;J online">
+        <div>
+          <h3 class="card-name">PB&amp;J</h3>
+          <p class="card-desc">Creamy peanut butter, WCS jelly</p>
+          <p class="card-price">$11.49</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-reuben-sandwich_82f0ccc0-0acb-4578-b472-a0498b537a16" target="_blank" rel="noopener" aria-label="Order Reuben online">
+        <div>
+          <h3 class="card-name">Reuben <small>(Panini Pressed)</small></h3>
+          <p class="card-desc">Corned beef, sauerkraut, rye bread, Russian dressing, Switzerland Swiss</p>
+          <p class="card-price">$16.99</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <h3 class="cards-sub">For the kids</h3>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-kids-12-grilled-cheese_2c4dd8c6-4a6d-4488-be93-b23ddd65a5ab" target="_blank" rel="noopener" aria-label="Order Kids ½ Grilled Cheese online">
+        <div>
+          <h3 class="card-name">Kids ½ Grilled Cheese</h3>
+          <p class="card-price">$7.49</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-kids-12-meat-and-cheese_4202a214-5ebb-413a-b393-2f5fc0c95f65" target="_blank" rel="noopener" aria-label="Order Kids ½ Meat and Cheese online">
+        <div>
+          <h3 class="card-name">Kids ½ Meat and Cheese</h3>
+          <p class="card-price">$7.49</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-kids-12-pbj_49ebdbd5-5c07-45d2-a2db-46cfb826ecea" target="_blank" rel="noopener" aria-label="Order Kids ½ PB&amp;J online">
+        <div>
+          <h3 class="card-name">Kids ½ PB&amp;J</h3>
+          <p class="card-price">$7.49</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
     </div>
-    <div class="cards" role="tabpanel" id="panel-salads" aria-labelledby="tab-salads" hidden>
-      <article class="card">
+
+    <div class="cards" role="tabpanel" id="panel-pizza" aria-labelledby="tab-pizza" hidden>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-bbq-chicken-pizza_4d741020-fef0-4d62-a5d9-a472f577349a" target="_blank" rel="noopener" aria-label="Order BBQ Chicken online">
         <div>
-          <h3 class="card-name">Garden Salad</h3>
-          <p class="card-desc">Spring mix, tomato, cucumber, red onion and your choice of dressing</p>
+          <h3 class="card-name">BBQ Chicken</h3>
+          <p class="card-desc">BBQ sauce, diced chicken, bacon, red onion</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-buffalo-chicken-pizza_0a050bd5-457b-41bb-8a91-6808de17d290" target="_blank" rel="noopener" aria-label="Order Buffalo Chicken online">
+        <div>
+          <h3 class="card-name">Buffalo Chicken</h3>
+          <p class="card-desc">Ranch and buffalo sauce, green onion, garlic, diced chicken, bacon</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-byo-pizza_d605813c-8e7d-4bf7-95d3-c798711b3036" target="_blank" rel="noopener" aria-label="Order Build Your Own online">
+        <div>
+          <h3 class="card-name">Build Your Own</h3>
+          <p class="card-desc">Two meats and two vegetables, your call</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-cheese-pizza_86823488-3a98-41ba-994a-fed86b9f19f5" target="_blank" rel="noopener" aria-label="Order Cheese online">
+        <div>
+          <h3 class="card-name">Cheese</h3>
+          <p class="card-desc">Mozzarella, gouda</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-chicken-bacon-ranch-pizza_e3fe2712-65c7-4130-81a5-c54cf753484c" target="_blank" rel="noopener" aria-label="Order Chicken Bacon Ranch online">
+        <div>
+          <h3 class="card-name">Chicken Bacon Ranch</h3>
+          <p class="card-desc">Diced chicken, ranch, tomato, cheddar, green onion, bacon</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-half-and-half-pizza_c5e05873-e59e-4517-911c-a1928532f460" target="_blank" rel="noopener" aria-label="Order Half and Half online">
+        <div>
+          <h3 class="card-name">Half and Half</h3>
+          <p class="card-desc">Want choices? Choose half and half from our pizza selection</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-hawaiian-pizza_bf3e3e1c-2ae6-4e76-8278-f1866a39d742" target="_blank" rel="noopener" aria-label="Order Hawaiian online">
+        <div>
+          <h3 class="card-name">Hawaiian</h3>
+          <p class="card-desc">Canadian bacon, pineapple</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-meatlovers-pizza_d7b21ece-fbdf-4795-8fc5-67c84d2b880c" target="_blank" rel="noopener" aria-label="Order Meatlovers online">
+        <div>
+          <h3 class="card-name">Meatlovers</h3>
+          <p class="card-desc">Pepperoni, sausage, salami, bacon</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-pepperoni-pizza_55fccfae-f0ef-4102-b8c5-2acf27ae261b" target="_blank" rel="noopener" aria-label="Order Pepperoni online">
+        <div>
+          <h3 class="card-name">Pepperoni</h3>
+          <p class="card-desc">Pepperoni slices</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-pickle-pizza_2bd98acb-5cd8-4851-9ccc-1e8db74ba324" target="_blank" rel="noopener" aria-label="Order Pickle online">
+        <div>
+          <h3 class="card-name">Pickle</h3>
+          <p class="card-desc">Alfredo white sauce, crispy bacon, pickles</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-saint-helens-pizza_ff7d12ee-16cf-4107-868c-30c601e7153f" target="_blank" rel="noopener" aria-label="Order Saint Helens online">
+        <div>
+          <h3 class="card-name">Saint Helens</h3>
+          <p class="card-desc">Alfredo, diced chicken, bacon, green onions, red pepper flakes, garlic</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-sasquatch_ac118faf-d556-4c1f-bedb-ec88ed2a3931" target="_blank" rel="noopener" aria-label="Order Sasquatch online">
+        <div>
+          <h3 class="card-name">Sasquatch</h3>
+          <p class="card-desc">Alfredo, onion balsamic aioli, mozzarella, horseradish, diced London broil</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-supreme-pizza_0b6785d7-ddd1-4dd2-8782-a54cc2d0806b" target="_blank" rel="noopener" aria-label="Order Supreme online">
+        <div>
+          <h3 class="card-name">Supreme</h3>
+          <p class="card-desc">Pepperoni, sausage, salami, bacon, black olives, shiitake mushroom, green bell peppers</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-sweet-spicy-pizza_12639156-562f-47e9-b6f5-3370672a474f" target="_blank" rel="noopener" aria-label="Order Sweet &amp; Spicy online">
+        <div>
+          <h3 class="card-name">Sweet &amp; Spicy</h3>
+          <p class="card-desc">Pepperoni, pineapple, jalape&ntilde;o, bacon</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-taco-pizza_01550a13-a7b3-41aa-9f2f-58ff91b582b7" target="_blank" rel="noopener" aria-label="Order Taco online">
+        <div>
+          <h3 class="card-name">Taco</h3>
+          <p class="card-desc">Salsa, cheddar, beef, olives, lettuce</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-vegetable-supreme_1b90a566-92c9-433f-ae20-6e8fabd7db25" target="_blank" rel="noopener" aria-label="Order Vegetable Supreme online">
+        <div>
+          <h3 class="card-name">Vegetable Supreme</h3>
+          <p class="card-desc">Green bell pepper, olives, red onion, mushroom, spinach, tomato</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <h3 class="cards-sub">Breadsticks &amp; sides</h3>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-breadsticks-4-pc_a8be069d-77a5-4544-b42e-e9bd2f329035" target="_blank" rel="noopener" aria-label="Order Breadsticks online">
+        <div>
+          <h3 class="card-name">Breadsticks <small>(4 pc)</small></h3>
+          <p class="card-desc">Garlic buttered parmesan</p>
+          <p class="card-price">$5.00</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-breadsticks-8-pc_bb46ed54-87ba-4677-9d37-17c305ffe069" target="_blank" rel="noopener" aria-label="Order Breadsticks online">
+        <div>
+          <h3 class="card-name">Breadsticks <small>(8 pc)</small></h3>
+          <p class="card-desc">Garlic buttered parmesan</p>
           <p class="card-price">$9.99</p>
         </div>
-        <button class="card-add" aria-label="Add Garden Salad to your order">+</button>
-      </article>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
       <article class="card">
         <div>
-          <h3 class="card-name">Chef Salad</h3>
-          <p class="card-desc">Spring mix with Boar's Head turkey, ham, Swiss and cheddar</p>
+          <h3 class="card-name">Dipping Sauces</h3>
+          <p class="card-desc">Ranch or marinara</p>
+          <p class="card-price">$0.50</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </article>
+    </div>
+
+    <div class="cards" role="tabpanel" id="panel-wings" aria-labelledby="tab-wings" hidden>
+      <h3 class="cards-sub">Wings</h3>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-bonein-8-pc_04a53f37-8920-4d3a-bec7-dadddbd9ba64" target="_blank" rel="noopener" aria-label="Order Bone-In Wings online">
+        <div>
+          <h3 class="card-name">Bone-In Wings <small>(8 pc)</small></h3>
+          <p class="card-desc">Flame-grilled bone-in wings</p>
+          <p class="card-price">$12.99</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-bonein-16-pc_97d43e2b-06f8-4d70-b198-1d89b4b54622" target="_blank" rel="noopener" aria-label="Order Bone-In Wings online">
+        <div>
+          <h3 class="card-name">Bone-In Wings <small>(16 pc)</small></h3>
+          <p class="card-desc">Flame-grilled bone-in wings</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-bonein-32-pc_041fba71-f77f-420b-9f1f-ccbf8deba1a0" target="_blank" rel="noopener" aria-label="Order Bone-In Wings online">
+        <div>
+          <h3 class="card-name">Bone-In Wings <small>(32 pc)</small></h3>
+          <p class="card-desc">Flame-grilled bone-in wings</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-boneless-8-pc_4c9e3db6-3e7c-44ce-b440-1ac6681e6a1d" target="_blank" rel="noopener" aria-label="Order Boneless Wings online">
+        <div>
+          <h3 class="card-name">Boneless Wings <small>(8 pc)</small></h3>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-boneless-16-pc_8c3f03ee-e680-4288-ae74-20963190ed28" target="_blank" rel="noopener" aria-label="Order Boneless Wings online">
+        <div>
+          <h3 class="card-name">Boneless Wings <small>(16 pc)</small></h3>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-boneless-32-pc_9978252a-dfe1-47b0-bf45-6d510761ea28" target="_blank" rel="noopener" aria-label="Order Boneless Wings online">
+        <div>
+          <h3 class="card-name">Boneless Wings <small>(32 pc)</small></h3>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <h3 class="cards-sub">Breadsticks</h3>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-breadsticks-4-pc_a8be069d-77a5-4544-b42e-e9bd2f329035" target="_blank" rel="noopener" aria-label="Order Breadsticks online">
+        <div>
+          <h3 class="card-name">Breadsticks <small>(4 pc)</small></h3>
+          <p class="card-desc">Garlic buttered parmesan</p>
+          <p class="card-price">$5.00</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-breadsticks-8-pc_bb46ed54-87ba-4677-9d37-17c305ffe069" target="_blank" rel="noopener" aria-label="Order Breadsticks online">
+        <div>
+          <h3 class="card-name">Breadsticks <small>(8 pc)</small></h3>
+          <p class="card-desc">Garlic buttered parmesan</p>
+          <p class="card-price">$9.99</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <article class="card">
+        <div>
+          <h3 class="card-name">Dipping Sauces</h3>
+          <p class="card-desc">Ranch or marinara</p>
+          <p class="card-price">$0.50</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </article>
+    </div>
+
+    <div class="cards" role="tabpanel" id="panel-salads" aria-labelledby="tab-salads" hidden>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-seasonal-salad_b46cb21b-89dc-44da-9dea-29043e263c84" target="_blank" rel="noopener" aria-label="Order Seasonal Salad online">
+        <div>
+          <h3 class="card-name">Seasonal Salad</h3>
+          <p class="card-desc">Spring mix, crushed pecan, Cosmic Crisp apple, goat cheese</p>
+          <p class="card-price">$13.89</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-caesar-salad_aff3f310-3c3a-40b5-a3fc-f7fa9fff2cad" target="_blank" rel="noopener" aria-label="Order Caesar Salad online">
+        <div>
+          <h3 class="card-name">Caesar Salad</h3>
+          <p class="card-desc">Romaine, parmesan, croutons</p>
           <p class="card-price">$13.49</p>
         </div>
-        <button class="card-add" aria-label="Add Chef Salad to your order">+</button>
-      </article>
-      <article class="card">
-        <div>
-          <h3 class="card-name">Soup of the Day</h3>
-          <p class="card-desc">Made in-house and rotating through the week — ask what's on</p>
-          <p class="card-price">$6.49</p>
-        </div>
-        <button class="card-add" aria-label="Add Soup of the Day to your order">+</button>
-      </article>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
     </div>
-    <div class="cards" role="tabpanel" id="panel-sides" aria-labelledby="tab-sides" hidden>
-      <article class="card">
-        <div>
-          <h3 class="card-name">Kettle Chips</h3>
-          <p class="card-desc">A bag from the rack to round out the sandwich</p>
-          <p class="card-price">$2.49</p>
-        </div>
-        <button class="card-add" aria-label="Add Kettle Chips to your order">+</button>
-      </article>
-      <article class="card">
-        <div>
-          <h3 class="card-name">House Pasta Salad</h3>
-          <p class="card-desc">Made fresh in the deli case</p>
-          <p class="card-price">$4.99</p>
-        </div>
-        <button class="card-add" aria-label="Add House Pasta Salad to your order">+</button>
-      </article>
-      <article class="card">
-        <div>
-          <h3 class="card-name">Pickle Spear</h3>
-          <p class="card-desc">Straight from the barrel</p>
-          <p class="card-price">$1.99</p>
-        </div>
-        <button class="card-add" aria-label="Add Pickle Spear to your order">+</button>
-      </article>
+
+    <div class="drinkpanel" role="tabpanel" id="panel-drinks" aria-labelledby="tab-drinks" hidden>
+    <div class="sizes" role="group" aria-label="Cup size">
+      <span class="sizes-label">Cup size</span>
+      <button class="size-btn" type="button" data-size="12" aria-pressed="false">12 oz</button>
+      <button class="size-btn" type="button" data-size="16" aria-pressed="true">16 oz</button>
+      <button class="size-btn" type="button" data-size="20" aria-pressed="false">20 oz</button>
     </div>
-    <div class="cards" role="tabpanel" id="panel-sweets" aria-labelledby="tab-sweets" hidden>
-      <article class="card">
+    <p class="menu-note size-note">Add a flavor to any drink for $0.75: vanilla, caramel, hazelnut, mocha, white chocolate, or sugar-free vanilla.</p>
+    <div class="cards size-set" data-size-set="12" hidden>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-americano_4d3b4fcb-336a-49c2-8789-5227a61f4f1a" target="_blank" rel="noopener" aria-label="Order Americano online">
         <div>
-          <h3 class="card-name">Gelato</h3>
-          <p class="card-desc">Scooped to order, flavors rotate through the season</p>
-          <p class="card-price">$5.49</p>
+          <h3 class="card-name">Americano <small>(12 oz)</small></h3>
+          <p class="card-price">$2.60</p>
         </div>
-        <button class="card-add" aria-label="Add Gelato to your order">+</button>
-      </article>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-latte_036767a1-3110-4a3a-95e2-6dd2a92f1028" target="_blank" rel="noopener" aria-label="Order Latte online">
         <div>
-          <h3 class="card-name">Ice Cream Cone</h3>
-          <p class="card-desc">Single or double scoop, cone or cup</p>
-          <p class="card-price">$4.49</p>
+          <h3 class="card-name">Latte <small>(12 oz)</small></h3>
+          <p class="card-price">$4.35</p>
         </div>
-        <button class="card-add" aria-label="Add Ice Cream Cone to your order">+</button>
-      </article>
-      <article class="card">
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-mocha_88171838-2f57-42ef-8d35-f4551b775351" target="_blank" rel="noopener" aria-label="Order Mocha online">
         <div>
-          <h3 class="card-name">Bakery Case</h3>
-          <p class="card-desc">Cookies and pastries, baked and set out each morning</p>
-          <p class="card-price">$3.99</p>
+          <h3 class="card-name">Mocha <small>(12 oz)</small></h3>
+          <p class="card-price">$4.45</p>
         </div>
-        <button class="card-add" aria-label="Add Bakery Case to your order">+</button>
-      </article>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-white-mocha_c6e92ee5-98c7-49c2-b57b-ca51b9c28e21" target="_blank" rel="noopener" aria-label="Order White Mocha online">
+        <div>
+          <h3 class="card-name">White Mocha <small>(12 oz)</small></h3>
+          <p class="card-price">$4.45</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-cappuccino_f3434066-4533-4abe-8951-c09d17c508f3" target="_blank" rel="noopener" aria-label="Order Cappuccino online">
+        <div>
+          <h3 class="card-name">Cappuccino <small>(12 oz)</small></h3>
+          <p class="card-price">$3.55</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-caramel-macchiato_c2ca7a24-4f0a-44ea-871f-5235e9a0e06f" target="_blank" rel="noopener" aria-label="Order Caramel Macchiato online">
+        <div>
+          <h3 class="card-name">Caramel Macchiato <small>(12 oz)</small></h3>
+          <p class="card-price">$4.50</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-hot-cocoa_dc169c39-f5b8-4714-9b02-601c2b2f8aaf" target="_blank" rel="noopener" aria-label="Order Hot Cocoa online">
+        <div>
+          <h3 class="card-name">Hot Cocoa <small>(12 oz)</small></h3>
+          <p class="card-price">$3.36</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-black-tea_bfee8170-9eab-4899-a015-f414d1b35ec1" target="_blank" rel="noopener" aria-label="Order Black Tea online">
+        <div>
+          <h3 class="card-name">Black Tea <small>(12 oz)</small></h3>
+          <p class="card-price">$2.95</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-spiced-chai_e318f506-f3b4-46de-9143-c9795a1a8273" target="_blank" rel="noopener" aria-label="Order Spiced Chai online">
+        <div>
+          <h3 class="card-name">Spiced Chai <small>(12 oz)</small></h3>
+          <p class="card-price">$4.23</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-12oz-vanilla-chai_7c6d0800-a301-4361-94ff-d7689843cc8a" target="_blank" rel="noopener" aria-label="Order Vanilla Chai online">
+        <div>
+          <h3 class="card-name">Vanilla Chai <small>(12 oz)</small></h3>
+          <p class="card-price">$4.23</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+    </div>
+    <div class="cards size-set" data-size-set="16">
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-americano_237913b3-04f8-430d-806f-926488669476" target="_blank" rel="noopener" aria-label="Order Americano online">
+        <div>
+          <h3 class="card-name">Americano <small>(16 oz)</small></h3>
+          <p class="card-price">$3.30</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-latte_df9321d0-727c-42e0-b708-8ee74ad5b59e" target="_blank" rel="noopener" aria-label="Order Latte online">
+        <div>
+          <h3 class="card-name">Latte <small>(16 oz)</small></h3>
+          <p class="card-price">$5.45</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-mocha_655e5d37-dc45-4d42-8742-e44acd255516" target="_blank" rel="noopener" aria-label="Order Mocha online">
+        <div>
+          <h3 class="card-name">Mocha <small>(16 oz)</small></h3>
+          <p class="card-price">$5.45</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-white-mocha_8c9ad0f6-a61b-4dac-a2ea-a05587c46b4a" target="_blank" rel="noopener" aria-label="Order White Mocha online">
+        <div>
+          <h3 class="card-name">White Mocha <small>(16 oz)</small></h3>
+          <p class="card-price">$5.45</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-cappuccino_53e7dca6-0e67-4a83-9d0a-144953350f17" target="_blank" rel="noopener" aria-label="Order Cappuccino online">
+        <div>
+          <h3 class="card-name">Cappuccino <small>(16 oz)</small></h3>
+          <p class="card-price">$4.30</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-caramel-macchiato_3d0a59c6-7081-481d-8079-1382e745aa3a" target="_blank" rel="noopener" aria-label="Order Caramel Macchiato online">
+        <div>
+          <h3 class="card-name">Caramel Macchiato <small>(16 oz)</small></h3>
+          <p class="card-price">$5.45</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-frappuccino_ffde8503-f6bf-4d35-a166-1c40d1998720" target="_blank" rel="noopener" aria-label="Order Frappuccino online">
+        <div>
+          <h3 class="card-name">Frappuccino <small>(16 oz)</small></h3>
+          <p class="card-price">$5.70</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-cold-brew_888fa703-3bf1-4c2b-8851-0dae0e50efaf" target="_blank" rel="noopener" aria-label="Order Cold Brew online">
+        <div>
+          <h3 class="card-name">Cold Brew <small>(16 oz)</small></h3>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-hot-cocoa_2d348634-2c34-402b-a180-c6f4b868d9cf" target="_blank" rel="noopener" aria-label="Order Hot Cocoa online">
+        <div>
+          <h3 class="card-name">Hot Cocoa <small>(16 oz)</small></h3>
+          <p class="card-price">$3.75</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-black-tea_de2fe567-3263-4d5b-84b0-7e06c89447b0" target="_blank" rel="noopener" aria-label="Order Black Tea online">
+        <div>
+          <h3 class="card-name">Black Tea <small>(16 oz)</small></h3>
+          <p class="card-price">$3.30</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-spiced-chai_a1659df3-914e-43f4-ab48-8c7a6627c42d" target="_blank" rel="noopener" aria-label="Order Spiced Chai online">
+        <div>
+          <h3 class="card-name">Spiced Chai <small>(16 oz)</small></h3>
+          <p class="card-price">$4.82</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-vanilla-chai_b47892f8-d8bc-4d53-91b6-b05f2545ddc0" target="_blank" rel="noopener" aria-label="Order Vanilla Chai online">
+        <div>
+          <h3 class="card-name">Vanilla Chai <small>(16 oz)</small></h3>
+          <p class="card-price">$4.82</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-italian-soda_43576c33-d298-4721-b407-dcaded8232ca" target="_blank" rel="noopener" aria-label="Order Italian Soda online">
+        <div>
+          <h3 class="card-name">Italian Soda <small>(16 oz)</small></h3>
+          <p class="card-price">$4.09</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-16oz-energy-drink_5a17e6cd-7a62-4094-a26e-54ae01a67a87" target="_blank" rel="noopener" aria-label="Order Energy Drink online">
+        <div>
+          <h3 class="card-name">Energy Drink <small>(16 oz)</small></h3>
+          <p class="card-price">$4.40</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+    </div>
+    <div class="cards size-set" data-size-set="20" hidden>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-americano_a3967930-ccf1-474f-836d-0e61bb95a5d3" target="_blank" rel="noopener" aria-label="Order Americano online">
+        <div>
+          <h3 class="card-name">Americano <small>(20 oz)</small></h3>
+          <p class="card-price">$3.70</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-latte_49dded45-998a-469d-9761-445f106db22d" target="_blank" rel="noopener" aria-label="Order Latte online">
+        <div>
+          <h3 class="card-name">Latte <small>(20 oz)</small></h3>
+          <p class="card-price">$5.95</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-mocha_5ecafe17-e3ad-46b0-b860-5058eeda7a58" target="_blank" rel="noopener" aria-label="Order Mocha online">
+        <div>
+          <h3 class="card-name">Mocha <small>(20 oz)</small></h3>
+          <p class="card-price">$6.00</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-white-mocha_b0b16395-0a17-4a3f-8607-a7340e596b74" target="_blank" rel="noopener" aria-label="Order White Mocha online">
+        <div>
+          <h3 class="card-name">White Mocha <small>(20 oz)</small></h3>
+          <p class="card-price">$6.00</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-cappuccino_f1ad8ec3-07ce-4f31-86ef-dd447af3e6e7" target="_blank" rel="noopener" aria-label="Order Cappuccino online">
+        <div>
+          <h3 class="card-name">Cappuccino <small>(20 oz)</small></h3>
+          <p class="card-price">$4.90</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-caramel-macchiato_92d91cb1-f699-49a8-9c98-9911c599fbcc" target="_blank" rel="noopener" aria-label="Order Caramel Macchiato online">
+        <div>
+          <h3 class="card-name">Caramel Macchiato <small>(20 oz)</small></h3>
+          <p class="card-price">$5.95</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-frappuccino_cf377cda-32a9-4721-b4ee-0e9aad67b8b0" target="_blank" rel="noopener" aria-label="Order Frappuccino online">
+        <div>
+          <h3 class="card-name">Frappuccino <small>(20 oz)</small></h3>
+          <p class="card-price">$6.45</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-cold-brew_53f87bd1-a200-4339-b476-7d97f10096b3" target="_blank" rel="noopener" aria-label="Order Cold Brew online">
+        <div>
+          <h3 class="card-name">Cold Brew <small>(20 oz)</small></h3>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-hot-cocoa_e83f30ae-5e11-4112-a5a2-8bc8882bcee9" target="_blank" rel="noopener" aria-label="Order Hot Cocoa online">
+        <div>
+          <h3 class="card-name">Hot Cocoa <small>(20 oz)</small></h3>
+          <p class="card-price">$4.09</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-black-tea_6d993432-8af5-4db0-8b61-98d9a487b2be" target="_blank" rel="noopener" aria-label="Order Black Tea online">
+        <div>
+          <h3 class="card-name">Black Tea <small>(20 oz)</small></h3>
+          <p class="card-price">$3.70</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-spiced-chai_69c44ac5-fd53-4f7e-98c8-a0dbc81d73a2" target="_blank" rel="noopener" aria-label="Order Spiced Chai online">
+        <div>
+          <h3 class="card-name">Spiced Chai <small>(20 oz)</small></h3>
+          <p class="card-price">$5.10</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-vanilla-chai_be17fe47-0555-43e4-9e94-b1d56554c5b6" target="_blank" rel="noopener" aria-label="Order Vanilla Chai online">
+        <div>
+          <h3 class="card-name">Vanilla Chai <small>(20 oz)</small></h3>
+          <p class="card-price">$5.10</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-italian-soda_5e7147c0-eaf1-4723-a24b-26dd62cabaf9" target="_blank" rel="noopener" aria-label="Order Italian Soda online">
+        <div>
+          <h3 class="card-name">Italian Soda <small>(20 oz)</small></h3>
+          <p class="card-price">$4.57</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+      <a class="card" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road/item-20oz-energy-drink_13dc5d93-c1a1-4d0b-9e3f-78a2a505b0e8" target="_blank" rel="noopener" aria-label="Order Energy Drink online">
+        <div>
+          <h3 class="card-name">Energy Drink <small>(20 oz)</small></h3>
+          <p class="card-price">$5.05</p>
+        </div>
+        <span class="card-add" aria-hidden="true">+</span>
+      </a>
+    </div>
     </div>
 
     <div class="menu-foot">
-      <a class="btn btn-orange" href="#visit">Order for Pickup</a>
+      <a class="btn btn-orange" href="https://order.toasttab.com/online/woodland-corner-store-1697-lewis-river-road" target="_blank" rel="noopener">Order for Pickup</a>
     </div>
   </div>
 </section>
@@ -784,29 +1308,32 @@
       <p class="blurb">Your neighborhood deli, market, and pizza counter in Woodland, Washington.</p>
     </div>
     <div>
-      <h5>Explore</h5>
-      <a href="index.html">Home</a>
-      <a href="menu.html">Menu</a>
-      <a href="index.html#catering">Catering</a>
-      <a href="events.html">Event Space</a>
-      <a href="index.html#visit">Contact Us</a>
-    </div>
-    <div>
       <h5>Visit</h5>
       <p class="fp">1697 Lewis River Rd<br>Woodland, WA 98674</p>
       <a href="tel:3602255000">360-225-5000</a>
     </div>
-    <div>
-      <h5>Follow</h5>
+  </div>
+  <div class="wrap"><hr class="hair hair-d"></div>
+  <div class="wrap foot-links">
+    <nav class="foot-row" aria-label="Follow">
+      <span class="foot-tag">Follow</span>
       <a href="#">Instagram</a>
       <a href="#">Facebook</a>
       <a href="#">Leave a Review</a>
-    </div>
+    </nav>
+    <nav class="foot-row foot-explore" aria-label="Explore">
+      <span class="foot-tag">Explore</span>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="market.html">The Market</a>
+      <a href="index.html#catering">Catering</a>
+      <a href="events.html">Event Space</a>
+      <a href="index.html#visit">Contact Us</a>
+    </nav>
   </div>
-  <div class="wrap"><hr class="hair hair-d"></div>
   <div class="wrap foot-bottom">
     <span>&copy; 2026 The Woodland Corner Store</span>
-    <span>1697 Lewis River Road · Woodland, WA</span>
+    <span>1697 Lewis River Road &middot; Woodland, WA</span>
   </div>
 </footer>
 
@@ -822,10 +1349,10 @@ if (tog && links) {
   tog.addEventListener('click',()=>{
     const open = links.classList.toggle('open');
     tog.setAttribute('aria-expanded', open);
-    tog.textContent = open ? 'Close' : 'Menu';
+    tog.innerHTML = open ? '&#10005;' : '&#9776;';
   });
   links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-    links.classList.remove('open'); tog.setAttribute('aria-expanded','false'); tog.textContent='Menu';
+    links.classList.remove('open'); tog.setAttribute('aria-expanded','false'); tog.innerHTML='&#9776;';
   }));
 }
 
@@ -872,6 +1399,24 @@ if (panels.length) {
   dots.forEach(d=>d.addEventListener('click',()=>{go(+d.dataset.go);restart();}));
   restart();
 }
+
+/* open the tab named in the link, e.g. menu.html#pizza */
+function openFromHash(){
+  const h = (location.hash||'').slice(1).toLowerCase();
+  const alias = {sandwich:'sandwiches', pizzas:'pizza', breadsticks:'wings', drinks:'drinks', coffee:'drinks', salad:'salads'};
+  const key = alias[h] || h;
+  const t = document.getElementById('tab-'+key);
+  if (t && typeof selectTab === 'function') { selectTab(t); document.getElementById('menu').scrollIntoView(); }
+}
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
+
+/* cup-size filter (menu page) */
+const sizeBtns = Array.from(document.querySelectorAll('.size-btn'));
+sizeBtns.forEach(b=>b.addEventListener('click',()=>{
+  sizeBtns.forEach(x=>x.setAttribute('aria-pressed', x===b));
+  document.querySelectorAll('.size-set').forEach(p=>{ p.hidden = p.dataset.sizeSet !== b.dataset.size; });
+}));
 </script>
 </body>
 </html>
